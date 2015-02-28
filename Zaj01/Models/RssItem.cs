@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Zaj01.Models
 {
@@ -10,7 +6,6 @@ namespace Zaj01.Models
     {
         [Display(Name = "Tytuł")]
         public string Title { get; set; }
-
 
         [UIHint("HTML")]
         public string Description { get; set; }
