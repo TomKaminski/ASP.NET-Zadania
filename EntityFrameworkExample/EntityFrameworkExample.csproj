@@ -121,6 +121,11 @@
     </Compile>
     <Compile Include="Identity\AppDbContext.cs" />
     <Compile Include="Identity\Model.cs" />
+    <Compile Include="Migrations\201502281023051_InitialCreate.cs" />
+    <Compile Include="Migrations\201502281023051_InitialCreate.Designer.cs">
+      <DependentUpon>201502281023051_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +149,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201502281023051_InitialCreate.resx">
+      <DependentUpon>201502281023051_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
