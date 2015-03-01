@@ -6,18 +6,23 @@ using EntityFrameworkExample.Identity;
 
 namespace EntityFrameworkExample.Controllers
 {
+    [RoutePrefix("Studenci")]
     public class StudentsController : Controller
     {
         private readonly AppDbContext _db = new AppDbContext();
 
         // GET: Students
+        [Route("Lista", Name = "MainList")]
+        [Route("List/{asd?}")]
+        [Route("~/Asd/NieObchodziMnieRouting")]
         public ActionResult Index()
         {
-            var students = _db.Students.Include(s => s.Address);
+            var students = _db.Students.Include(s => s.Address).Include(x=>x.Phones);
             return View(students.ToList());
         }
 
         // GET: Students/Details/5
+        [Route("Szczegoly/{id:int=43571}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,6 +38,8 @@ namespace EntityFrameworkExample.Controllers
         }
 
         // GET: Students/Create
+        [Route("Create")]
+        [Route("",Name="aletojestslabe")]
         public ActionResult Create()
         {
             ViewBag.NrIndeksu = new SelectList(_db.Addresses, "NrIndeksu", "Street");
@@ -44,6 +51,8 @@ namespace EntityFrameworkExample.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
+        [Route("")]
         public ActionResult Create([Bind(Include = "NrIndeksu,Name,LastName")] Student student)
         {
             if (ModelState.IsValid)
@@ -58,6 +67,7 @@ namespace EntityFrameworkExample.Controllers
         }
 
         // GET: Students/Edit/5
+        [Route("Edytuj/Uzytkownik{id:int}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +88,7 @@ namespace EntityFrameworkExample.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edytuj/Uzytkownik{id:int}")]
         public ActionResult Edit([Bind(Include = "NrIndeksu,Name,LastName")] Student student)
         {
             if (ModelState.IsValid)
@@ -91,6 +102,7 @@ namespace EntityFrameworkExample.Controllers
         }
 
         // GET: Students/Delete/5
+        [Route("{id:int}/UsunMnie")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +120,7 @@ namespace EntityFrameworkExample.Controllers
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("UsuwaszMnie")]
         public ActionResult DeleteConfirmed(int id)
         {
             Student student = _db.Students.Find(id);
