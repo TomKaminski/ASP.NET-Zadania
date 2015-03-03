@@ -120,7 +120,7 @@ namespace EntityFrameworkExample.Controllers
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("UsuwaszMnie")]
+        [Route("{id:int}/UsunMnie")]
         public ActionResult DeleteConfirmed(int id)
         {
             Student student = _db.Students.Find(id);
