@@ -11,7 +11,7 @@ namespace EntityFrameworkExample.Identity
             Phones = new List<Phone>();
         }
 
-        //[Key,DatabaseGenerated(DatabaseGeneratedOption.None)] - Check Fluent API
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int NrIndeksu { get; set; }
 
         [Column("Imie"),Display(Name="Imie")]
@@ -49,7 +49,7 @@ namespace EntityFrameworkExample.Identity
         [Key]
         public int PhoneId { get; set; }
 
-        //[ForeignKey("Student")] - Check Fluent API
+        [ForeignKey("Student")]
         public int NrIndeksu { get; set; }
 
         public int Number { get; set; }
