@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Data.Entity;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
+using Dapper;
 using EF.Test.Entities;
-using EF.Test.Entities.TPH;
+
 
 namespace EF.Test
 {
@@ -11,22 +13,45 @@ namespace EF.Test
         static void Main(string[] args)
         {
             AppDomain.CurrentDomain.SetData("DataDirectory",AppDomain.CurrentDomain.BaseDirectory);
-            Database.SetInitializer(new TestContext.DbInitializer());
-
+            System.Data.Entity.Database.SetInitializer(new TestContext.DbInitializer());
+            var connection =  ConfigurationManager.ConnectionStrings["SuperContext"].ConnectionString;            
             using (var db = new TestContext())
+            {               
+                var start = DateTime.Now;
+                var plz3 = db.Projects.Select(x => new{x.Name,x.Id}).ToList();
+                Console.WriteLine(DateTime.Now - start);
+                foreach (var project in plz3)
+                {
+                    Console.WriteLine("Project: {0} - {1}",project.Id,project.Name);                    
+                }
+            }
+
+            using (var con = new SqlConnection(connection))
             {
-                var plz = db.Members.Select(x => x).ToList();
-                foreach (var member in plz)
+                var start = DateTime.Now;
+                var plz = con.Query<Project>("select Name, Id from Project").Select(x=>new
                 {
-                    Console.WriteLine("Team name: {0} ------ MemberName: {1}", member.Team.Name, member.Name);
+                    x.Name,
+                    x.Id
+                }).ToList();
+                Console.WriteLine(DateTime.Now - start);
+                foreach (var project in plz)
+                {
+                    Console.WriteLine("Project: {0} - {1}", project.Id, project.Name);     
                 }
 
-                var plz2 = db.Persons.OfType<Student>().Select(x => x);
-                foreach (var item in plz2)
+                var start2 = DateTime.Now;
+                var plz2 = con.GetList<Project>().Select(x => new
                 {
-                    Console.WriteLine(item.Name);
-
+                    x.Name,
+                    x.Id
+                }).ToList();
+                Console.WriteLine(DateTime.Now - start2);
+                foreach (var project in plz2)
+                {
+                    Console.WriteLine("Project: {0} - {1}", project.Id, project.Name);    
                 }
+                
             }
         }
     }

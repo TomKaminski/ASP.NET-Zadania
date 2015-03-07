@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using System.Globalization;
-using System.Security.AccessControl;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using EF.Test.Entities.TPH;
 
 namespace EF.Test.Entities
@@ -10,20 +10,27 @@ namespace EF.Test.Entities
     {
         public TestContext():base("SuperContext")
         {
-            
         }
         public DbSet<Member> Members { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Team> Teams { get; set; }
-
+        public DbSet<ProjectMembers> ProjectMembers { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Person> Persons { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Project>()
-                .HasMany(x => x.Members)
-                .WithMany(k => k.Projects).Map(k => k.ToTable("ProjsaSaSasectMemberess"))
-                .Map(x => x.MapLeftKey("MemberId")).Map(j=>j.MapRightKey("ProjectId"));
+            //modelBuilder.Entity<Member>()
+            //    .HasMany(x => x.Projects)
+            //    .WithMany(k => k.Members)
+            //    .Map(x =>
+            //    {
+            //        x.MapLeftKey("ProjectId");
+            //        x.MapRightKey("MemberId");
+            //        x.ToTable("MembersOfProjects");
+            //    });
+
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             base.OnModelCreating(modelBuilder);
         }
@@ -40,29 +47,16 @@ namespace EF.Test.Entities
                         new Member
                         {
                             MemberTitle = EMemberTitle.Developer,
-                            Name="SuperMember",
-                            Projects = new List<Project>
-                            {
-                                new Project
-                                {
-                                    Name="SuperProject"
-                                }
-                            }
+                            Name="SuperMember",                            
                         },
                         new Member
                         {
                             MemberTitle = EMemberTitle.ScrumMaster,
-                            Name="SuperMember2",
-                            Projects = new List<Project>
-                            {
-                                new Project
-                                {
-                                    Name="SuperProject2"
-                                }
-                            }
+                            Name="SuperMember2",                            
                         }
                     }
                 });
+                context.SaveChanges();
                 context.Teams.Add(new Team
                 {
                     Name = "SuperImie2",
@@ -71,30 +65,26 @@ namespace EF.Test.Entities
                         new Member
                         {
                             MemberTitle = EMemberTitle.Developer,
-                            Name="SuperMember3",
-                            Projects = new List<Project>
-                            {
-                                new Project
-                                {
-                                    Name="SuperProject3"
-                                }
-                            }
+                            Name="SuperMember3",                            
                         },
                         new Member
                         {
                             MemberTitle = EMemberTitle.ScrumMaster,
-                            Name="SuperMember4",
-                            Projects = new List<Project>
-                            {
-                                new Project
-                                {
-                                    Name="SuperProject4"
-                                }
-                            }
+                            Name="SuperMember4",                           
                         }
                     }
                 });
-
+                context.SaveChanges();
+                context.Projects.Add(new Project
+                {
+                    Name = "Projekt1",
+                    ProjectMembers = new List<ProjectMembers>
+                    {
+                        new ProjectMembers {MemberId = 1,StartDate = DateTime.Now},
+                        new ProjectMembers {MemberId = 3,StartDate = DateTime.Now}
+                    }
+                });
+                context.SaveChanges();
                 context.Schools.Add(new School
                 {
                     Persons = new List<Person>
