@@ -1,22 +1,29 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using EF.Test.Entities.TPH;
 
+#endregion
+
 namespace EF.Test.Entities
 {
-    class TestContext:DbContext
+    internal class TestContext : DbContext
     {
-        public TestContext():base("SuperContext")
+        public TestContext() : base("SuperContext")
         {
         }
+
         public DbSet<Member> Members { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<ProjectMembers> ProjectMembers { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Shop> Shops { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,12 +54,12 @@ namespace EF.Test.Entities
                         new Member
                         {
                             MemberTitle = EMemberTitle.Developer,
-                            Name="SuperMember",                            
+                            Name = "SuperMember",
                         },
                         new Member
                         {
                             MemberTitle = EMemberTitle.ScrumMaster,
-                            Name="SuperMember2",                            
+                            Name = "SuperMember2",
                         }
                     }
                 });
@@ -65,12 +72,12 @@ namespace EF.Test.Entities
                         new Member
                         {
                             MemberTitle = EMemberTitle.Developer,
-                            Name="SuperMember3",                            
+                            Name = "SuperMember3",
                         },
                         new Member
                         {
                             MemberTitle = EMemberTitle.ScrumMaster,
-                            Name="SuperMember4",                           
+                            Name = "SuperMember4",
                         }
                     }
                 });
@@ -80,8 +87,8 @@ namespace EF.Test.Entities
                     Name = "Projekt1",
                     ProjectMembers = new List<ProjectMembers>
                     {
-                        new ProjectMembers {MemberId = 1,StartDate = DateTime.Now},
-                        new ProjectMembers {MemberId = 3,StartDate = DateTime.Now}
+                        new ProjectMembers {MemberId = 1, StartDate = DateTime.Now},
+                        new ProjectMembers {MemberId = 3, StartDate = DateTime.Now}
                     }
                 });
                 context.SaveChanges();
@@ -96,8 +103,21 @@ namespace EF.Test.Entities
                     }
                 });
                 context.SaveChanges();
+                context.Shops.Add(new Shop
+                {
+                    Name = "AthSHop",
+                    Products = new List<Product>
+                    {
+                        new Bike {EBikeType = EBikeType.Downhill, Name = "BMX", Price = 100.5m},
+                        new Bike {EBikeType = EBikeType.Downhill, Name = "sdfsdf", Price = 100.5m},
+                        new Bike {EBikeType = EBikeType.Downhill, Name = "sfdfds", Price = 100.5m},
+                        new Bike {EBikeType = EBikeType.Downhill, Name = "BMfsdfsdfsdfsdX", Price = 100.5m},
+                        new Tire {Name = "Opona 2", Price = 42m, Size = 50},
+                        new Tire {Name = "Opona 3", Price = 555m, Size = 30}
+                    }
+                });
                 base.Seed(context);
             }
-        }    
+        }
     }
 }

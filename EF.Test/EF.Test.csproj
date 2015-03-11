@@ -63,8 +63,12 @@
     <Compile Include="Entities\TestContext.cs" />
     <Compile Include="Entities\TPH\Person.cs" />
     <Compile Include="Entities\TPH\School.cs" />
+    <Compile Include="Entities\TPT Inheritance\Bike.cs" />
+    <Compile Include="Entities\TPT Inheritance\Product.cs" />
+    <Compile Include="Entities\TPT Inheritance\Shop.cs" />
     <Compile Include="Entities\TPH\Student.cs" />
     <Compile Include="Entities\TPH\Teacher.cs" />
+    <Compile Include="Entities\TPT Inheritance\Tire.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Entities\ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
