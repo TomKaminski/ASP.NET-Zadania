@@ -1,19 +1,18 @@
 ﻿<%@ Page Title="Super Strona" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Validation.aspx.cs" Inherits="Zaj02.Validation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2 style="text-align: center;margin-bottom:30px;">Formularz zgłoszeniowy</h2>
-    <div class="form-horizontal">
-        
+    <h2 style="text-align: center; margin-bottom: 30px;">Formularz zgłoszeniowy</h2>
+    <div class="form-horizontal">        
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <h3 style="font-weight: bold">Autor</h3>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="AuthorName" CssClass="col-md-2 control-label">Imię</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="AuthorName" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="AuthorName" CssClass="form-control"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="AuthorName"
                                                     CssClass="text-danger" ErrorMessage="Imię jest wymagane" />
                     </div>
-                </div>
+                </div>                
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="AuthorLastName" CssClass="col-md-2 control-label">Nazwisko</asp:Label>
                     <div class="col-md-10">
@@ -100,33 +99,63 @@
                         <asp:Button runat="server" OnClick="RegisterReport" Text="Register" CssClass="btn btn-default" />
                     </div>
                 </div>
-            </div>
-            <div class="col-md-7">
-                <table class="table-striped table">
-                    <thead>
-                        <tr style="font-weight: bold">
-                            <td>Autor</td>
-                            <td>Email</td>
-                            <td>Współautor</td>
-                            <td>Opiekun</td>
-                            <td>Temat</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                    <td><%# Eval("AuthorLastName") %> <%# Eval("AuthorName") %></td>
-                                    <td><%# Eval("AuthorEmail") %></td>
-                                    <td><%# Eval("SubAuthorLastName") %> <%# Eval("SubAuthorName") %></td>
-                                    <td><%# Eval("DefenderLastName") %> <%# Eval("DefenderName") %></td>
-                                    <td><%# Eval("ReportTitle") %></td>
+            </div>            
+        </div>
+        <h1>Repeater List</h1>
+        <div class="col-md-12">
+            <table class="table-striped table">
+                <thead>
+                    <tr style="font-weight: bold">
+                        <td>Autor</td>
+                        <td>Email</td>
+                        <td>Współautor</td>
+                        <td>Opiekun</td>
+                        <td>Temat</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="Repeater1" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td><%# Eval("AuthorLastName") %> <%# Eval("AuthorName") %></td>
+                                <td><%# Eval("AuthorEmail") %></td>
+                                <td><%# Eval("SubAuthorLastName") %> <%# Eval("SubAuthorName") %></td>
+                                <td><%# Eval("DefenderLastName") %> <%# Eval("DefenderName") %></td>
+                                <td><%# Eval("ReportTitle") %></td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>                                
+        </div>
+        <h1>Angular List</h1>
+        <div class="row">
+            <div class="col-md-12 center-block">
+                <div ng-app="App">
+                    <div ng-controller="AppCtrl" ng-init="init()">
+                        <table class="table-striped table">
+                            <thead>
+                                <tr style="font-weight: bold">
+                                    <td>Autor</td>
+                                    <td>Email</td>
+                                    <td>Współautor</td>
+                                    <td>Opiekun</td>
+                                    <td>Temat</td>
                                 </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </tbody>
-                </table>                                
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in data">
+                                    <td>{{item.AuthorLastName}} {{item.AuthorName}}</td>
+                                    <td>{{item.AuthorEmail}}</td>
+                                    <td>{{item.SubAuthorLastName}} {{item.SubAuthorName}}</td>
+                                    <td>{{item.DefenderLastName}} {{item.DefenderName}}</td>
+                                    <td>{{item.ReportTitle}}</td>
+                                </tr>
+                            </tbody>
+                        </table>                    
+                    </div>
+                </div>
             </div>
         </div>
-    </div>        
+    </div>    
 </asp:Content>

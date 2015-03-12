@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Services;
 using Zaj02.Infrastructure;
 
 namespace Zaj02
@@ -8,14 +10,12 @@ namespace Zaj02
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Title = "Super strona";
             using (var db = new AppDbContext())
             {
                 var plz = db.Formularze.Select(x => x).ToList();
                 Repeater1.DataSource = plz;
                 Repeater1.DataBind();
             }
-            
         }
 
         protected void RegisterReport(object sender, EventArgs e)
@@ -36,8 +36,6 @@ namespace Zaj02
                     ReportTitle = reportTitle.Text,
                     AuthorName = AuthorName.Text
                 });
-                
-                
                 db.SaveChanges();
                 var plz = db.Formularze.Select(x => x).ToList();
                 Repeater1.DataSource = plz;
@@ -45,7 +43,6 @@ namespace Zaj02
                 ClearForm();
             }
         }
-
         protected void ClearForm()
         {
             Email.Text = string.Empty;
@@ -60,6 +57,15 @@ namespace Zaj02
             universityAddress.Text = string.Empty;
             reportSummary.Value = string.Empty;
 
+        }
+
+        [WebMethod]
+        public static List<Formularz> ReturnData()
+        {
+            using (var db = new AppDbContext())
+            {
+                return db.Formularze.Select(x => x).ToList();
+            }
         }
     }
 }
