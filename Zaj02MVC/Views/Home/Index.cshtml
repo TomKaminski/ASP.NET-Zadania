@@ -1,0 +1,126 @@
+﻿@model Zaj02MVC.Models.IndexViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-horizontal">
+                <h3 class="col-md-offset-1">Autor<span style="color:red">*</span></h3>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.AuthorName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.AuthorName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.AuthorName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.AuthorLastName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.AuthorLastName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.AuthorLastName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.AuthorEmail, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.AuthorEmail, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.AuthorEmail, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <h3 class="col-md-offset-1">Wspołautor</h3>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.SubAuthorName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.SubAuthorName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.SubAuthorName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.SubAuthorLastName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.SubAuthorLastName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.SubAuthorLastName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <h3 class="col-md-offset-1">Opiekun<span style="color:red">*</span></h3>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.DefenderName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.DefenderName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.DefenderName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.DefenderLastName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.DefenderLastName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.DefenderLastName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <h3 class="col-md-offset-1">Uczelnia/szkoła<span style="color:red">*</span></h3>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.UniversityName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.UniversityName, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.UniversityName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.UniversityAddress, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.UniversityAddress, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.UniversityAddress, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <h3 class="col-md-offset-1">Referat<span style="color:red">*</span></h3>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.ReportTitle, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Formularz.ReportTitle, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.ReportTitle, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Formularz.ReportSummary, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(x => x.Formularz.ReportSummary, new { @class = "form-control pull-right" })
+                        @Html.ValidationMessageFor(x => x.Formularz.ReportSummary, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" class="btn btn-primary" value="Wyślij" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Autor</th>
+                    <th>Współautor</th>
+                    <th>Opiekun</th>
+                    <th>Referat</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.IndexList)
+                {
+                    <tr>
+                        <td>@item.AuthorName @item.AuthorLastName</td>
+                        <td>@item.SubAuthorName @item.SubAutorLastName</td>
+                        <td>@item.DefenderName @item.DefenderLastName</td>
+                        <td>@item.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -114,14 +114,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <asp:Repeater ID="Repeater1" runat="server">
+                    <asp:Repeater ID="Repeater1" runat="server" ItemType="Zaj02.Infrastructure.Formularz">
                         <ItemTemplate>
                             <tr>
-                                <td><%# Eval("AuthorLastName") %> <%# Eval("AuthorName") %></td>
-                                <td><%# Eval("AuthorEmail") %></td>
-                                <td><%# Eval("SubAuthorLastName") %> <%# Eval("SubAuthorName") %></td>
-                                <td><%# Eval("DefenderLastName") %> <%# Eval("DefenderName") %></td>
-                                <td><%# Eval("ReportTitle") %></td>
+                                <td><%# Item.AuthorName %> <%# Item.AuthorLastName %></td>
+                                <td><%# Item.AuthorEmail %></td>
+                                <td><%# Item.SubAuthorLastName %> <%# Item.SubAuthorName %></td>
+                                <td><%# Item.DefenderLastName %> <%# Item.DefenderName %></td>
+                                <td><%# Item.ReportTitle %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
