@@ -10,7 +10,7 @@
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="AuthorName" CssClass="form-control"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="AuthorName"
-                                                    CssClass="text-danger" ErrorMessage="Imię jest wymagane" />
+                                                    CssClass="text-danger" ErrorMessage="Imię jest wymagane"/>
                     </div>
                 </div>                
                 <div class="form-group">
@@ -26,8 +26,8 @@
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                                    CssClass="text-danger" ErrorMessage="Email jest wymagany"/>
-                        <asp:RegularExpressionValidator CssClass="text-danger" ValidationExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" ControlToValidate="Email" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email jest niepoprawny"></asp:RegularExpressionValidator>
+                                                    CssClass="text-danger" ErrorMessage="Email jest wymagany" Display="Dynamic"/>
+                        <asp:RegularExpressionValidator CssClass="text-danger" Display="Dynamic" ValidationExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" ControlToValidate="Email" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Email jest niepoprawny"></asp:RegularExpressionValidator>
                     </div>
                 </div>
                 <h3 style="font-weight: bold">Współautor</h3>
@@ -101,61 +101,61 @@
                 </div>
             </div>            
         </div>
-        <h1>Repeater List</h1>
-        <div class="col-md-12">
-            <table class="table-striped table">
-                <thead>
-                    <tr style="font-weight: bold">
-                        <td>Autor</td>
-                        <td>Email</td>
-                        <td>Współautor</td>
-                        <td>Opiekun</td>
-                        <td>Temat</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <asp:Repeater ID="Repeater1" runat="server" ItemType="Zaj02.Infrastructure.Formularz">
-                        <ItemTemplate>
-                            <tr>
-                                <td><%# Item.AuthorName %> <%# Item.AuthorLastName %></td>
-                                <td><%# Item.AuthorEmail %></td>
-                                <td><%# Item.SubAuthorLastName %> <%# Item.SubAuthorName %></td>
-                                <td><%# Item.DefenderLastName %> <%# Item.DefenderName %></td>
-                                <td><%# Item.ReportTitle %></td>
+    </div>
+    <h1>Repeater List</h1>
+    <div class="col-md-12">
+        <table class="table-striped table">
+            <thead>
+                <tr style="font-weight: bold">
+                    <td>Autor</td>
+                    <td>Email</td>
+                    <td>Współautor</td>
+                    <td>Opiekun</td>
+                    <td>Temat</td>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="Repeater1" runat="server" ItemType="Zaj02.Infrastructure.Formularz">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# Item.AuthorName %> <%# Item.AuthorLastName %></td>
+                            <td><%# Item.AuthorEmail %></td>
+                            <td><%# Item.SubAuthorLastName %> <%# Item.SubAuthorName %></td>
+                            <td><%# Item.DefenderLastName %> <%# Item.DefenderName %></td>
+                            <td><%# Item.ReportTitle %></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>                                
+    </div>
+    <h1>Angular List</h1>
+    <div class="row">
+        <div class="col-md-12 center-block">
+            <div ng-app="App">
+                <div ng-controller="AppCtrl" ng-init="init()">
+                    <table class="table-striped table">
+                        <thead>
+                            <tr style="font-weight: bold">
+                                <td>Autor</td>
+                                <td>Email</td>
+                                <td>Współautor</td>
+                                <td>Opiekun</td>
+                                <td>Temat</td>
                             </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </tbody>
-            </table>                                
-        </div>
-        <h1>Angular List</h1>
-        <div class="row">
-            <div class="col-md-12 center-block">
-                <div ng-app="App">
-                    <div ng-controller="AppCtrl" ng-init="init()">
-                        <table class="table-striped table">
-                            <thead>
-                                <tr style="font-weight: bold">
-                                    <td>Autor</td>
-                                    <td>Email</td>
-                                    <td>Współautor</td>
-                                    <td>Opiekun</td>
-                                    <td>Temat</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in data">
-                                    <td>{{item.AuthorLastName}} {{item.AuthorName}}</td>
-                                    <td>{{item.AuthorEmail}}</td>
-                                    <td>{{item.SubAuthorLastName}} {{item.SubAuthorName}}</td>
-                                    <td>{{item.DefenderLastName}} {{item.DefenderName}}</td>
-                                    <td>{{item.ReportTitle}}</td>
-                                </tr>
-                            </tbody>
-                        </table>                    
-                    </div>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in data">
+                                <td>{{item.AuthorLastName}} {{item.AuthorName}}</td>
+                                <td>{{item.AuthorEmail}}</td>
+                                <td>{{item.SubAuthorLastName}} {{item.SubAuthorName}}</td>
+                                <td>{{item.DefenderLastName}} {{item.DefenderName}}</td>
+                                <td>{{item.ReportTitle}}</td>
+                            </tr>
+                        </tbody>
+                    </table>                    
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </asp:Content>

@@ -242,6 +242,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="Validation.aspx" />
+    <Content Include="ValidationFormView.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -391,6 +392,15 @@
     </Compile>
     <Compile Include="Infrastructure\ApplicationDbContext.cs" />
     <Compile Include="Infrastructure\Entities.cs" />
+    <Compile Include="Migrations\201503141811467_InitialCreate.cs" />
+    <Compile Include="Migrations\201503141811467_InitialCreate.Designer.cs">
+      <DependentUpon>201503141811467_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503151732162_Initial-migration2.cs" />
+    <Compile Include="Migrations\201503151732162_Initial-migration2.Designer.cs">
+      <DependentUpon>201503151732162_Initial-migration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -415,6 +425,13 @@
     <Compile Include="Validation.aspx.designer.cs">
       <DependentUpon>Validation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ValidationFormView.aspx.cs">
+      <DependentUpon>ValidationFormView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ValidationFormView.aspx.designer.cs">
+      <DependentUpon>ValidationFormView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -425,6 +442,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201503141811467_InitialCreate.resx">
+      <DependentUpon>201503141811467_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503151732162_Initial-migration2.resx">
+      <DependentUpon>201503151732162_Initial-migration2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
