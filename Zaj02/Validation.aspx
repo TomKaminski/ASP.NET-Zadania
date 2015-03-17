@@ -115,7 +115,7 @@
                 </tr>
             </thead>
             <tbody>
-                <asp:Repeater ID="Repeater1" runat="server" ItemType="Zaj02.Infrastructure.Formularz">
+                <asp:Repeater ID="Repeater1" runat="server" ItemType="Zaj02.Infrastructure.FormularzPlz">
                     <ItemTemplate>
                         <tr>
                             <td><%# Item.AuthorName %> <%# Item.AuthorLastName %></td>

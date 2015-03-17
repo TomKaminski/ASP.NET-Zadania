@@ -18,4 +18,20 @@ namespace Zaj02.Infrastructure
             base.OnModelCreating(modelBuilder);
         }
     }
+
+    public class AppDbContextPlz : DbContext
+    {
+        public AppDbContextPlz() : base("DefaultConnectionPlz")
+        {
+           
+        }
+
+        public DbSet<FormularzPlz> FormularzPlzes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder);
+        }
+    }
 }

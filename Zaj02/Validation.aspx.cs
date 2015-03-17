@@ -10,9 +10,9 @@ namespace Zaj02
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (var db = new AppDbContext())
+            using (var db = new AppDbContextPlz())
             {
-                var plz = db.Formularze.Select(x => x).ToList();
+                var plz = db.FormularzPlzes.Select(x => x).ToList();
                 Repeater1.DataSource = plz;
                 Repeater1.DataBind();
             }
@@ -20,9 +20,9 @@ namespace Zaj02
 
         protected void RegisterReport(object sender, EventArgs e)
         {
-            using (var db = new AppDbContext())
+            using (var db = new AppDbContextPlz())
             {
-                db.Formularze.Add(new Formularz
+                db.FormularzPlzes.Add(new FormularzPlz
                 {
                     AuthorEmail = Email.Text,
                     DefenderLastName = DefenderLastName.Text,
@@ -37,7 +37,7 @@ namespace Zaj02
                     AuthorName = AuthorName.Text
                 });
                 db.SaveChanges();
-                var plz = db.Formularze.Select(x => x).ToList();
+                var plz = db.FormularzPlzes.Select(x => x).ToList();
                 Repeater1.DataSource = plz;
                 Repeater1.DataBind();
                 ClearForm();
@@ -60,11 +60,11 @@ namespace Zaj02
         }
 
         [WebMethod]
-        public static List<Formularz> ReturnData()
+        public static List<FormularzPlz> ReturnData()
         {
-            using (var db = new AppDbContext())
+            using (var db = new AppDbContextPlz())
             {
-                return db.Formularze.Select(x => x).ToList();
+                return db.FormularzPlzes.Select(x => x).ToList();
             }
         }
     }
