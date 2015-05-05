@@ -7,12 +7,7 @@ namespace KoVPlz.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public JsonResult ReturnData()
-        {
-            return Json(new[] {"1.jpg", "2.jpg", "3.jpg"}, JsonRequestBehavior.AllowGet);
+            return View(new[] { "1.jpg", "2.jpg", "3.jpg" });
         }
     }
 }

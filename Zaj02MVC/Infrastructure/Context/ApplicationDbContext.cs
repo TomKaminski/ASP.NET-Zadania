@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Zaj02MVC.Models;
 
-namespace Zaj02MVC.Infrastructure
+namespace Zaj02MVC.Infrastructure.Context
 {
     public class AppDbContext : DbContext
     {
@@ -17,5 +18,9 @@ namespace Zaj02MVC.Infrastructure
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
         }
+        
     }
+
+
+    
 }

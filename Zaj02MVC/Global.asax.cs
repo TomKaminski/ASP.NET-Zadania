@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Zaj02MVC.Modules;
+
 
 namespace Zaj02MVC
 {
@@ -16,6 +20,19 @@ namespace Zaj02MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Autofac Configuration
+            var builder = new ContainerBuilder();
+
+            builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
+
+            builder.RegisterModule(new RepositoryModule());
+            builder.RegisterModule(new ServicesModule());
+            builder.RegisterModule(new EfModule());
+
+            var container = builder.Build();
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

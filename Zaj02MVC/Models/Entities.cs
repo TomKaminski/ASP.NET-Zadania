@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Zaj02MVC.Infrastructure
+namespace Zaj02MVC.Models
 {
     public class Formularz
     {
